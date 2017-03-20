@@ -67,15 +67,17 @@
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <view alpha="0.45000000000000001" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2PN-7W-3Od">
+                                    <view alpha="0.45000000000000001" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2PN-7W-3Od">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="100"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     </view>
                                 </subviews>
                                 <constraints>
                                     <constraint firstItem="Zr1-8F-4fY" firstAttribute="leading" secondItem="ddg-Lf-2Nn" secondAttribute="leading" constant="20" id="Jty-rf-fYa"/>
+                                    <constraint firstAttribute="bottom" secondItem="2PN-7W-3Od" secondAttribute="bottom" id="KKh-Py-HQX"/>
                                     <constraint firstItem="8m7-pi-ln4" firstAttribute="top" secondItem="Zr1-8F-4fY" secondAttribute="bottom" constant="8" id="KfC-CF-90e"/>
+                                    <constraint firstAttribute="trailing" secondItem="2PN-7W-3Od" secondAttribute="trailing" id="LTg-te-itn"/>
+                                    <constraint firstItem="2PN-7W-3Od" firstAttribute="leading" secondItem="ddg-Lf-2Nn" secondAttribute="leading" id="LhP-UF-zcv"/>
                                     <constraint firstItem="1mI-ak-X3S" firstAttribute="top" secondItem="ddg-Lf-2Nn" secondAttribute="top" constant="18" id="PUq-a9-gRz"/>
                                     <constraint firstAttribute="height" constant="100" id="RUr-to-r8j"/>
                                     <constraint firstItem="8nc-uC-YIz" firstAttribute="centerX" secondItem="E6D-Gr-StJ" secondAttribute="centerX" id="SyR-wP-kSv"/>
@@ -85,6 +87,7 @@
                                     <constraint firstItem="E6D-Gr-StJ" firstAttribute="top" secondItem="ddg-Lf-2Nn" secondAttribute="top" constant="8" id="i8K-ar-s3Z"/>
                                     <constraint firstItem="Zr1-8F-4fY" firstAttribute="top" secondItem="ddg-Lf-2Nn" secondAttribute="top" constant="8" id="jQ2-pP-mYo"/>
                                     <constraint firstAttribute="trailing" secondItem="E6D-Gr-StJ" secondAttribute="trailing" constant="20" id="oSP-mv-YXB"/>
+                                    <constraint firstItem="2PN-7W-3Od" firstAttribute="top" secondItem="ddg-Lf-2Nn" secondAttribute="top" id="y9b-vA-ZBm"/>
                                 </constraints>
                             </view>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="200" verticalHuggingPriority="200" horizontalCompressionResistancePriority="200" verticalCompressionResistancePriority="200" image="cloud" translatesAutoresizingMaskIntoConstraints="NO" id="i51-n7-DyI">

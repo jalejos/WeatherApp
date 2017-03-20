@@ -29,7 +29,24 @@ class MainViewController: UIViewController {
     }
     
     func checkWeather () {
-        
+        let location = Geolocation.init()
+        WeatherService.getWeather(location: location, onClosure: { (weather, error) in
+            if (error == nil){
+                if let weather = weather {
+                    self.weatherLabel.text = weather.description
+                    self.locationLabel.text = weather.location
+                    self.celciusLabel.text = "\(weather.celcius)"
+                    let dateFormatter = DateFormatter()
+                    dateFormatter.dateFormat = "h:mm a"
+                    let sunriseDate = dateFormatter.string(from: weather.sunrise)
+                    let sunsetDate = dateFormatter.string(from: weather.sunset)
+                    self.sunriseLabel.text = sunriseDate
+                    self.sunsetLabel.text = sunsetDate
+                }
+            } else{
+                print(error)
+            }
+        })
     }
 
 }
