@@ -33,7 +33,7 @@ class MainViewController: UIViewController {
                 if let weather = weather {
                     self.weatherLabel.text = weather.description
                     self.locationLabel.text = weather.location
-                    self.temperatureLabel.text = "\(weather.celcius)"
+                    self.temperatureLabel.text = "\(weather.temperature)C"
                     let dateFormatter = DateFormatter()
                     dateFormatter.dateFormat = "h:mm a"
                     let sunriseDate = dateFormatter.string(from: weather.sunrise)
