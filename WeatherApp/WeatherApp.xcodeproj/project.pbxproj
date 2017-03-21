@@ -129,18 +129,16 @@
 		31E894A31E8052C00038E70A /* WeatherApp */ = {
 			isa = PBXGroup;
 			children = (
-				31E894A41E8052C00038E70A /* AppDelegate.swift */,
-				31E894A81E8052C00038E70A /* Main.storyboard */,
 				31E894AB1E8052C00038E70A /* Assets.xcassets */,
-				31E894AD1E8052C00038E70A /* LaunchScreen.storyboard */,
+				31E894E31E81A93B0038E70A /* Storyboards */,
+				31E894E21E81A91B0038E70A /* ViewControllers */,
+				31E894E41E81A96C0038E70A /* Models */,
+				31E894E51E81A98E0038E70A /* Utilities */,
+				31E894E61E81A9A10038E70A /* Services */,
+				31E894E71E81A9B20038E70A /* Repositories */,
+				31E894E81E81A9C40038E70A /* Routing */,
+				31E894A41E8052C00038E70A /* AppDelegate.swift */,
 				31E894B01E8052C00038E70A /* Info.plist */,
-				31E894D21E805C400038E70A /* MainViewController.swift */,
-				31E894D41E805D2F0038E70A /* WeatherService.swift */,
-				31E894D61E805D3C0038E70A /* WeatherRepository.swift */,
-				31E894E01E8190600038E70A /* WeatherRouter.swift */,
-				31E894D81E805D550038E70A /* Weather.swift */,
-				31E894DA1E805EF00038E70A /* Geolocation.swift */,
-				31E894DC1E8099AF0038E70A /* LocationManager.swift */,
 			);
 			path = WeatherApp;
 			sourceTree = "<group>";
@@ -161,6 +159,64 @@
 				31E894C61E8052C00038E70A /* Info.plist */,
 			);
 			path = WeatherAppUITests;
+			sourceTree = "<group>";
+		};
+		31E894E21E81A91B0038E70A /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				31E894D21E805C400038E70A /* MainViewController.swift */,
+			);
+			name = ViewControllers;
+			sourceTree = "<group>";
+		};
+		31E894E31E81A93B0038E70A /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				31E894A81E8052C00038E70A /* Main.storyboard */,
+				31E894AD1E8052C00038E70A /* LaunchScreen.storyboard */,
+			);
+			name = Storyboards;
+			sourceTree = "<group>";
+		};
+		31E894E41E81A96C0038E70A /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				31E894DA1E805EF00038E70A /* Geolocation.swift */,
+				31E894D81E805D550038E70A /* Weather.swift */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		31E894E51E81A98E0038E70A /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				31E894DC1E8099AF0038E70A /* LocationManager.swift */,
+			);
+			name = Utilities;
+			sourceTree = "<group>";
+		};
+		31E894E61E81A9A10038E70A /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				31E894D41E805D2F0038E70A /* WeatherService.swift */,
+			);
+			name = Services;
+			sourceTree = "<group>";
+		};
+		31E894E71E81A9B20038E70A /* Repositories */ = {
+			isa = PBXGroup;
+			children = (
+				31E894D61E805D3C0038E70A /* WeatherRepository.swift */,
+			);
+			name = Repositories;
+			sourceTree = "<group>";
+		};
+		31E894E81E81A9C40038E70A /* Routing */ = {
+			isa = PBXGroup;
+			children = (
+				31E894E01E8190600038E70A /* WeatherRouter.swift */,
+			);
+			name = Routing;
 			sourceTree = "<group>";
 		};
 		4F3900182C3E0008DEAB7105 /* Pods */ = {
