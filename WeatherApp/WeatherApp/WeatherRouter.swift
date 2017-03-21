@@ -10,6 +10,7 @@ import Alamofire
 
 enum WeatherRouter: URLRequestConvertible {
     case getWeather(geolocation: Geolocation, units: TemperatureUnits)
+    case getForecast(geolocation: Geolocation, units: TemperatureUnits)
     
     static let appId = "3f3a608541a999f9d309a7f2b3f36ac7"
     
@@ -21,7 +22,7 @@ enum WeatherRouter: URLRequestConvertible {
     
     var method: HTTPMethod {
         switch self {
-        case .getWeather:
+        case .getWeather, .getForecast:
             return .get
         }
     }
@@ -30,12 +31,16 @@ enum WeatherRouter: URLRequestConvertible {
         switch self {
         case .getWeather:
             return "/weather"
+        case .getForecast:
+            return "/forecast"
         }
+        
     }
     
     var parameters: Parameters {
         switch self {
-        case let .getWeather(geolocation, units):
+        case let .getWeather(geolocation, units),
+             let .getForecast(geolocation, units):
             var parameters = ["appid": WeatherRouter.appId,
                               "lat":   geolocation.latitude,
                               "lon":   geolocation.longitude]
@@ -55,7 +60,7 @@ enum WeatherRouter: URLRequestConvertible {
         urlRequest.httpMethod = method.rawValue
         
         switch self {
-        case .getWeather:
+        case .getWeather, .getForecast:
             urlRequest = try URLEncoding.default.encode(urlRequest, with: parameters)
         }
         
