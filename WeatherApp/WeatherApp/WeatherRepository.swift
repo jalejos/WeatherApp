@@ -12,7 +12,7 @@ import Alamofire
 struct WeatherRepository {
     
     static func getWeather (geolocation: Geolocation, onClosure: @escaping (_ weather: Dictionary <String, Any>?, _ error: Error?) -> Void) {
-        Alamofire.request(WeatherRouter.getWeatherRequest(geolocation: geolocation, units: .celsius)).responseJSON(completionHandler: { (response) in
+        Alamofire.request(WeatherRouter.getWeather(geolocation: geolocation, units: .celsius)).responseJSON(completionHandler: { (response) in
             if let responseError = response.error {
                 onClosure(nil, responseError)
             }

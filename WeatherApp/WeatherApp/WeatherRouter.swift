@@ -6,11 +6,11 @@
 //  Copyright © 2017 Alejos. All rights reserved.
 //
 
-import Foundation
+import Alamofire
 
-struct WeatherRouter {
+enum WeatherRouter: URLRequestConvertible {
+    case getWeather(geolocation: Geolocation, units: TemperatureUnits)
     
-    static let baseURL = "http://api.openweathermap.org/data/2.5/weather"
     static let appId = "3f3a608541a999f9d309a7f2b3f36ac7"
     
     enum TemperatureUnits : String {
@@ -19,21 +19,47 @@ struct WeatherRouter {
         case kelvin = ""
     }
     
-    static func getWeatherRequest(geolocation: Geolocation, units: TemperatureUnits) -> String {
-        let unitParam : String
+    var method: HTTPMethod {
+        switch self {
+        case .getWeather:
+            return .get
+        }
+    }
+    
+    var path: String {
+        switch self {
+        case .getWeather:
+            return "/weather"
+        }
+    }
+    
+    var parameters: Parameters {
+        switch self {
+        case let .getWeather(geolocation, units):
+            var parameters = ["appid": WeatherRouterNew.appId,
+                              "lat":   geolocation.latitude,
+                              "lon":   geolocation.longitude]
+            
+            if units != .kelvin {
+                parameters["units"] = units.rawValue
+            }
+            
+            return parameters
+        }
+    }
+    
+    func asURLRequest() throws -> URLRequest {
+        let url = APIManager.baseURL
         
-        switch units {
-        case .celsius:
-            unitParam = "&units=\(units.rawValue)"
-            break
-        case .farenheit:
-            unitParam = "&units=\(units.rawValue)"
-            break
-        case .kelvin:
-            unitParam = ""
-            break
+        var urlRequest = URLRequest(url: url.appendingPathComponent(path))
+        urlRequest.httpMethod = method.rawValue
+        
+        switch self {
+        case .getWeather:
+            urlRequest = try URLEncoding.default.encode(urlRequest, with: parameters)
         }
         
-        return baseURL + "?lat=\(geolocation.latitude)&lon=\(geolocation.longitude)&appid=\(appId)" + unitParam
+        return urlRequest
     }
 }
+
