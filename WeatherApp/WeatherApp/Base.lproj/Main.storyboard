@@ -112,10 +112,10 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="celciusLabel" destination="1mI-ak-X3S" id="cZ6-qK-npi"/>
                         <outlet property="locationLabel" destination="6VS-kU-os2" id="bs1-b4-61d"/>
                         <outlet property="sunriseLabel" destination="8m7-pi-ln4" id="N3f-9u-uCC"/>
                         <outlet property="sunsetLabel" destination="8nc-uC-YIz" id="Pgu-3u-34t"/>
+                        <outlet property="temperatureLabel" destination="1mI-ak-X3S" id="2jF-kR-SC2"/>
                         <outlet property="weatherIcon" destination="i51-n7-DyI" id="WvR-iv-Z53"/>
                         <outlet property="weatherLabel" destination="xZs-Ln-HsX" id="LP4-EA-n7q"/>
                     </connections>
