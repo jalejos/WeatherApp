@@ -66,5 +66,7 @@
             </dict>
         </dict>
     </dict>
+    <key>NSLocationWhenInUseUsageDescription</key>
+    <string>We need current location to get accurate weather</string>
 </dict>
 </plist>

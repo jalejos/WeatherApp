@@ -10,8 +10,8 @@ import Foundation
 import ObjectMapper
 
 struct WeatherService {
-    static func getWeather (location: Geolocation, onClosure: @escaping (_ weather: Weather?, _ error: Error?) -> Void) {
-        WeatherRepository.getWeather(location: location) { (weatherJSON, error) in
+    static func getWeather (geolocation: Geolocation, onClosure: @escaping (_ weather: Weather?, _ error: Error?) -> Void) {
+        WeatherRepository.getWeather(geolocation: geolocation) { (weatherJSON, error) in
             if (error == nil){
                 guard let weatherJSON = weatherJSON else {onClosure(nil, nil); return}
 

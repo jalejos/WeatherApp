@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreLocation
 
 class MainViewController: UIViewController {
 
@@ -17,20 +18,17 @@ class MainViewController: UIViewController {
     @IBOutlet weak var sunriseLabel: UILabel!
     @IBOutlet weak var sunsetLabel: UILabel!
     
+    let locationManager = LocationManager()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        checkWeather()
-        // Do any additional setup after loading the view.
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+        if let geolocation = locationManager.getLocation(sender: self) {
+            checkWeather(geolocation: geolocation)
+        }
     }
     
-    func checkWeather () {
-        let location = Geolocation.init()
-        WeatherService.getWeather(location: location, onClosure: { (weather, error) in
+    func checkWeather (geolocation: Geolocation) {
+        WeatherService.getWeather(geolocation: geolocation, onClosure: { (weather, error) in
             if (error == nil){
                 if let weather = weather {
                     self.weatherLabel.text = weather.description
@@ -44,9 +42,26 @@ class MainViewController: UIViewController {
                     self.sunsetLabel.text = sunsetDate
                 }
             } else{
-                print(error)
+                print(error ?? "error on service request")
             }
         })
     }
+}
 
+extension MainViewController: CLLocationManagerDelegate {
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        let location = locations.first
+        if let coordinates = location?.coordinate {
+            let geolocation = Geolocation(lat: String(format:"%f",coordinates.latitude), lng: String(format:"%f",coordinates.longitude))
+            checkWeather(geolocation: geolocation)
+        } else {
+            checkWeather(geolocation: Geolocation())
+        }
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        print(error)
+        checkWeather(geolocation: Geolocation())
+    }
 }

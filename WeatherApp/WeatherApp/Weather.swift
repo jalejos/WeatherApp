@@ -23,7 +23,7 @@ class Weather: Mappable {
         }
         return nil
     }, toJSON: { (value: Double?) -> Double? in
-        // transform value from Int? to String?
+        // transform value from Celcius to Kelvin
         if let value = value {
             return Double(value) + 273.15
         }
