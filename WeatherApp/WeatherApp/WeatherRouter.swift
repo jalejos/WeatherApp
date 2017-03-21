@@ -36,7 +36,7 @@ enum WeatherRouter: URLRequestConvertible {
     var parameters: Parameters {
         switch self {
         case let .getWeather(geolocation, units):
-            var parameters = ["appid": WeatherRouterNew.appId,
+            var parameters = ["appid": WeatherRouter.appId,
                               "lat":   geolocation.latitude,
                               "lon":   geolocation.longitude]
             
