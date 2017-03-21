@@ -37,7 +37,7 @@ class Weather: Mappable {
     func mapping(map: Map) {
         temperature <- (map["main.temp"], transformCelcius)
         location <- map["name"]
-        description <- map["weather.description"]
+        description <- map["weather.0.main"]
         sunrise <- (map["sys.sunrise"], DateTransform())
         sunset <- (map["sys.sunset"], DateTransform())
     }
