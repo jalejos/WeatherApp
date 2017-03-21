@@ -90,7 +90,7 @@
                                     <constraint firstItem="2PN-7W-3Od" firstAttribute="top" secondItem="ddg-Lf-2Nn" secondAttribute="top" id="y9b-vA-ZBm"/>
                                 </constraints>
                             </view>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="200" verticalHuggingPriority="200" horizontalCompressionResistancePriority="200" verticalCompressionResistancePriority="200" image="cloud" translatesAutoresizingMaskIntoConstraints="NO" id="i51-n7-DyI">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="200" verticalHuggingPriority="200" horizontalCompressionResistancePriority="200" verticalCompressionResistancePriority="200" image="cloud_white" translatesAutoresizingMaskIntoConstraints="NO" id="i51-n7-DyI">
                                 <rect key="frame" x="76" y="28" width="222.5" height="222.5"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="i51-n7-DyI" secondAttribute="height" multiplier="1:1" id="OHM-md-atp"/>
@@ -126,6 +126,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="cloud" width="76" height="76"/>
+        <image name="cloud_white" width="76" height="76"/>
     </resources>
 </document>
