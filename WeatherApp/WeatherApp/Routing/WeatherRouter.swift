@@ -12,7 +12,6 @@ enum WeatherRouter: URLRequestConvertible {
     case getWeather(geolocation: Geolocation, unit: TemperatureUnit)
     case getForecast(geolocation: Geolocation, unit: TemperatureUnit)
     
-    static let appId = "3f3a608541a999f9d309a7f2b3f36ac7"
     static let forecastDays = 5
     
     enum TemperatureUnit : String {
@@ -40,7 +39,7 @@ enum WeatherRouter: URLRequestConvertible {
     
     var parameters: Parameters {
         let parameters: (_ geo: Geolocation, _ unit: TemperatureUnit) -> (Parameters) = { (geo, unit) in
-            var params = ["appid": WeatherRouter.appId,
+            var params = ["appid": APIManager.appId,
                           "lat":   geo.latitude,
                           "lon":   geo.longitude]
             if unit != .kelvin {
