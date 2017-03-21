@@ -19,6 +19,7 @@ class MainViewController: UIViewController {
     @IBOutlet weak var sunsetLabel: UILabel!
     
     let locationManager = LocationManager()
+    var currentGeolocation = Geolocation()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,7 +29,9 @@ class MainViewController: UIViewController {
     }
     
     @IBAction func forecastTapped(_ sender: Any) {
-//        WeatherService.getForecast(geolocation: <#T##Geolocation#>, onClosure: <#T##(Weather?, Error?) -> Void#>)
+        WeatherService.getForecast(geolocation: currentGeolocation, onClosure: { (weatherArray, error) in
+            print(weatherArray)
+        })
     }
     
     func checkWeather (geolocation: Geolocation) {
@@ -58,15 +61,14 @@ extension MainViewController: CLLocationManagerDelegate {
         let location = locations.first
         if let coordinates = location?.coordinate {
             let geolocation = Geolocation(lat: String(format:"%f",coordinates.latitude), lng: String(format:"%f",coordinates.longitude))
-            checkWeather(geolocation: geolocation)
-        } else {
-            checkWeather(geolocation: Geolocation())
+            currentGeolocation = geolocation
         }
+        checkWeather(geolocation: currentGeolocation)
     }
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
         print(error)
-        checkWeather(geolocation: Geolocation())
+        checkWeather(geolocation: currentGeolocation)
     }
     
 }

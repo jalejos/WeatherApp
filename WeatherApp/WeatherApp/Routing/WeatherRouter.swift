@@ -13,8 +13,9 @@ enum WeatherRouter: URLRequestConvertible {
     case getForecast(geolocation: Geolocation, units: TemperatureUnits)
     
     static let appId = "3f3a608541a999f9d309a7f2b3f36ac7"
+    static let forecastDays = 5
     
-    enum TemperatureUnits : String {
+    enum TemperatureUnit : String {
         case celsius = "metric"
         case farenheit = "imperial"
         case kelvin = ""
@@ -32,22 +33,29 @@ enum WeatherRouter: URLRequestConvertible {
         case .getWeather:
             return "/weather"
         case .getForecast:
-            return "/forecast"
+            return "/forecast/daily"
         }
         
     }
     
     var parameters: Parameters {
-        switch self {
-        case let .getWeather(geolocation, units),
-             let .getForecast(geolocation, units):
-            var parameters = ["appid": WeatherRouter.appId,
-                              "lat":   geolocation.latitude,
-                              "lon":   geolocation.longitude]
-            
-            if units != .kelvin {
-                parameters["units"] = units.rawValue
+        let parameters: (_ geo: Geolocation, _ unit: TemperatureUnit) -> (Parameters) = { (geo, unit) in
+            var params = ["appid": WeatherRouter.appId,
+                          "lat":   geo.latitude,
+                          "lon":   geo.longitude]
+            if unit != .kelvin {
+                params["units"] = unit.rawValue
             }
+            
+            return params
+        }
+        switch self {
+        case let .getWeather(geolocation, unit):
+            return parameters(geolocation, unit)
+            
+        case let .getForecast(geolocation, unit):
+            var parameters = parameters(geolocation, unit)
+            parameters["cnt"] = WeatherRouter.forecastDays
             
             return parameters
         }

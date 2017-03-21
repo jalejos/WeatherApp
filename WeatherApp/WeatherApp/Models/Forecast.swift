@@ -34,10 +34,10 @@ class Forecast: Mappable {
     }
     
     func mapping(map: Map) {
-        maxTemperature <- (map["main.temp_max"], transformTemperature)
-        minTemperature <- (map["main.temp_min"], transformTemperature)
+        maxTemperature <- (map["temp.max"], transformTemperature)
+        minTemperature <- (map["temp.min"], transformTemperature)
         description <- map["weather.0.main"]
         date <- (map["dt"], DateTransform())
-        icon <- (map["weather.icon"])
+        icon <- (map["weather.0.icon"])
     }
 }
