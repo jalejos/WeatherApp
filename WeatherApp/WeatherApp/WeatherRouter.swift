@@ -12,24 +12,24 @@ struct WeatherRouter {
     
     static let baseURL = "http://api.openweathermap.org/data/2.5/weather"
     static let appId = "3f3a608541a999f9d309a7f2b3f36ac7"
-    static let celsiusUnits = "metric"
-    static let farenheitUnits = "imperial"
     
-    enum TemperatureUnits {
-        case celsiusUnits, farenheitUnits, kelvinUnits
+    enum TemperatureUnits : String {
+        case celsius = "metric"
+        case farenheit = "imperial"
+        case kelvin = ""
     }
     
     static func getWeatherRequest(geolocation: Geolocation, units: TemperatureUnits) -> String {
         let unitParam : String
         
         switch units {
-        case .celsiusUnits:
-            unitParam = "&units=\(celsiusUnits)"
+        case .celsius:
+            unitParam = "&units=\(units.rawValue)"
             break
-        case .farenheitUnits:
-            unitParam = "&units=\(farenheitUnits)"
+        case .farenheit:
+            unitParam = "&units=\(units.rawValue)"
             break
-        case .kelvinUnits:
+        case .kelvin:
             unitParam = ""
             break
         }
