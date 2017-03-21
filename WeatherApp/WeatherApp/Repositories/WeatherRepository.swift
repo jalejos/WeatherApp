@@ -12,7 +12,7 @@ import Alamofire
 struct WeatherRepository {
     
     static func getWeather (geolocation: Geolocation, onClosure: @escaping (_ weather: Dictionary <String, Any>?, _ error: Error?) -> Void) {
-        Alamofire.request(WeatherRouter.getWeather(geolocation: geolocation, units: .celsius)).responseJSON(completionHandler: { (response) in
+        Alamofire.request(WeatherRouter.getWeather(geolocation: geolocation, unit: .celsius)).responseJSON(completionHandler: { (response) in
             if let responseError = response.error {
                 onClosure(nil, responseError)
             }
@@ -23,7 +23,7 @@ struct WeatherRepository {
     }
     
     static func getForecast (geolocation: Geolocation, onClosure: @escaping (_ forecast: Dictionary <String, Any>?, _ error: Error?) -> Void) {
-        Alamofire.request(WeatherRouter.getForecast(geolocation: geolocation, units: .celsius)).responseJSON { (response) in
+        Alamofire.request(WeatherRouter.getForecast(geolocation: geolocation, unit: .celsius)).responseJSON { (response) in
             if let responseError = response.error {
                 onClosure(nil, responseError)
             }

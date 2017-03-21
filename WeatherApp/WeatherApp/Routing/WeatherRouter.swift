@@ -9,8 +9,8 @@
 import Alamofire
 
 enum WeatherRouter: URLRequestConvertible {
-    case getWeather(geolocation: Geolocation, units: TemperatureUnits)
-    case getForecast(geolocation: Geolocation, units: TemperatureUnits)
+    case getWeather(geolocation: Geolocation, unit: TemperatureUnit)
+    case getForecast(geolocation: Geolocation, unit: TemperatureUnit)
     
     static let appId = "3f3a608541a999f9d309a7f2b3f36ac7"
     static let forecastDays = 5
