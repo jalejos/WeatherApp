@@ -10,22 +10,22 @@ import UIKit
 import ObjectMapper
 
 class Weather: Mappable {
-    var celcius: Double = 0
+    var temperature: Int = 0
     var location: String = "0"
     var description: String = ""
     var sunrise: Date = Date()
     var sunset: Date = Date()
     
-    let transformCelcius = TransformOf<Double, Double>(fromJSON: { (value: Double?) -> Double? in
-        // transform value from Kelvin to Celcius
+    let transformTemperature = TransformOf<Int, Double>(fromJSON: { (value: Double?) -> Int? in
+        // transform value from Double to Int
         if let value = value {
-            return Double(value) - 273.15
+            return Int(value)
         }
         return nil
-    }, toJSON: { (value: Double?) -> Double? in
-        // transform value from Celcius to Kelvin
+    }, toJSON: { (value: Int?) -> Double? in
+        // transform value from Int to Double
         if let value = value {
-            return Double(value) + 273.15
+            return Double(value)
         }
         return nil
     })
@@ -35,9 +35,9 @@ class Weather: Mappable {
     }
     
     func mapping(map: Map) {
-        celcius <- (map["main.temp"], transformCelcius)
+        temperature <- (map["main.temp"], transformTemperature)
         location <- map["name"]
-        description <- map["weather.description"]
+        description <- map["weather.0.main"]
         sunrise <- (map["sys.sunrise"], DateTransform())
         sunset <- (map["sys.sunset"], DateTransform())
     }

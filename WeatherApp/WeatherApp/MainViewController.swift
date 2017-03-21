@@ -14,7 +14,7 @@ class MainViewController: UIViewController {
     @IBOutlet weak var weatherIcon: UIImageView!
     @IBOutlet weak var weatherLabel: UILabel!
     @IBOutlet weak var locationLabel: UILabel!
-    @IBOutlet weak var celciusLabel: UILabel!
+    @IBOutlet weak var temperatureLabel: UILabel!
     @IBOutlet weak var sunriseLabel: UILabel!
     @IBOutlet weak var sunsetLabel: UILabel!
     
@@ -33,7 +33,7 @@ class MainViewController: UIViewController {
                 if let weather = weather {
                     self.weatherLabel.text = weather.description
                     self.locationLabel.text = weather.location
-                    self.celciusLabel.text = "\(weather.celcius)"
+                    self.temperatureLabel.text = "\(weather.temperature)C"
                     let dateFormatter = DateFormatter()
                     dateFormatter.dateFormat = "h:mm a"
                     let sunriseDate = dateFormatter.string(from: weather.sunrise)

@@ -9,14 +9,10 @@
 import Foundation
 
 struct Geolocation {
-    let latitude : String
-    let longitude : String
-    let defaultLat = "29.0730"
-    let defaultLng = "-110.9559"
+    var latitude : String = "29.0730"
+    var longitude : String = "-110.9559"
     
     init(){
-        latitude = defaultLat
-        longitude = defaultLng
     }
     
     init(lat:String, lng: String){

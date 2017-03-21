@@ -90,7 +90,7 @@
                                     <constraint firstItem="2PN-7W-3Od" firstAttribute="top" secondItem="ddg-Lf-2Nn" secondAttribute="top" id="y9b-vA-ZBm"/>
                                 </constraints>
                             </view>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="200" verticalHuggingPriority="200" horizontalCompressionResistancePriority="200" verticalCompressionResistancePriority="200" image="cloud" translatesAutoresizingMaskIntoConstraints="NO" id="i51-n7-DyI">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="200" verticalHuggingPriority="200" horizontalCompressionResistancePriority="200" verticalCompressionResistancePriority="200" image="cloud_white" translatesAutoresizingMaskIntoConstraints="NO" id="i51-n7-DyI">
                                 <rect key="frame" x="76" y="28" width="222.5" height="222.5"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="i51-n7-DyI" secondAttribute="height" multiplier="1:1" id="OHM-md-atp"/>
@@ -112,10 +112,10 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="celciusLabel" destination="1mI-ak-X3S" id="cZ6-qK-npi"/>
                         <outlet property="locationLabel" destination="6VS-kU-os2" id="bs1-b4-61d"/>
                         <outlet property="sunriseLabel" destination="8m7-pi-ln4" id="N3f-9u-uCC"/>
                         <outlet property="sunsetLabel" destination="8nc-uC-YIz" id="Pgu-3u-34t"/>
+                        <outlet property="temperatureLabel" destination="1mI-ak-X3S" id="2jF-kR-SC2"/>
                         <outlet property="weatherIcon" destination="i51-n7-DyI" id="WvR-iv-Z53"/>
                         <outlet property="weatherLabel" destination="xZs-Ln-HsX" id="LP4-EA-n7q"/>
                     </connections>
@@ -126,6 +126,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="cloud" width="76" height="76"/>
+        <image name="cloud_white" width="76" height="76"/>
     </resources>
 </document>
