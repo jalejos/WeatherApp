@@ -27,6 +27,10 @@ class MainViewController: UIViewController {
         }
     }
     
+    @IBAction func forecastTapped(_ sender: Any) {
+//        WeatherService.getForecast(geolocation: <#T##Geolocation#>, onClosure: <#T##(Weather?, Error?) -> Void#>)
+    }
+    
     func checkWeather (geolocation: Geolocation) {
         WeatherService.getWeather(geolocation: geolocation, onClosure: { (weather, error) in
             if (error == nil){
@@ -64,4 +68,5 @@ extension MainViewController: CLLocationManagerDelegate {
         print(error)
         checkWeather(geolocation: Geolocation())
     }
+    
 }

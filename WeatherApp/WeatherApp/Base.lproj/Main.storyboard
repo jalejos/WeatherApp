@@ -7,6 +7,7 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -96,6 +97,15 @@
                                     <constraint firstAttribute="width" secondItem="i51-n7-DyI" secondAttribute="height" multiplier="1:1" id="OHM-md-atp"/>
                                 </constraints>
                             </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1GM-Qt-hXh">
+                                <rect key="frame" x="299" y="617" width="60" height="30"/>
+                                <state key="normal" title="Forecast">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="forecastTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ZVA-tf-BWG"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.50196081400000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
@@ -108,7 +118,9 @@
                             <constraint firstItem="i51-n7-DyI" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="asG-Jd-iLe"/>
                             <constraint firstItem="6VS-kU-os2" firstAttribute="top" secondItem="xZs-Ln-HsX" secondAttribute="bottom" constant="20" id="gAF-rz-KVB"/>
                             <constraint firstItem="i51-n7-DyI" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="8" id="jVs-Bo-k0y"/>
+                            <constraint firstItem="1GM-Qt-hXh" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="q3Y-cj-Ckc"/>
                             <constraint firstItem="ddg-Lf-2Nn" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="qaL-NG-4OX"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="1GM-Qt-hXh" secondAttribute="bottom" constant="20" id="tkw-Sa-XdN"/>
                         </constraints>
                     </view>
                     <connections>
