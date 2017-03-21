@@ -16,7 +16,7 @@ class Weather: Mappable {
     var sunrise: Date = Date()
     var sunset: Date = Date()
     
-    let transformCelcius = TransformOf<Int, Double>(fromJSON: { (value: Double?) -> Int? in
+    let transformTemperature = TransformOf<Int, Double>(fromJSON: { (value: Double?) -> Int? in
         // transform value from Double to Int
         if let value = value {
             return Int(value)
@@ -35,7 +35,7 @@ class Weather: Mappable {
     }
     
     func mapping(map: Map) {
-        temperature <- (map["main.temp"], transformCelcius)
+        temperature <- (map["main.temp"], transformTemperature)
         location <- map["name"]
         description <- map["weather.0.main"]
         sunrise <- (map["sys.sunrise"], DateTransform())
