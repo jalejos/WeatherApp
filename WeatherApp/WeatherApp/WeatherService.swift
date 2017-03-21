@@ -26,4 +26,18 @@ struct WeatherService {
             }
         }
     }
+    
+    static func getForecast (geolocation: Geolocation, onClosure: @escaping (_ weather: [Weather]?, _ error: Error?) -> Void) {
+        WeatherRepository.getForecast(geolocation: geolocation) { (responseJSON, error) in
+            if error == nil {
+                guard let responseJSON = responseJSON else { onClosure(nil, nil); return }
+                guard let arrayJSON = responseJSON["list"] as? Array<Dictionary<String, Any>> else { onClosure(nil, nil); return }
+                
+                if let weatherArray = Mapper<Weather>().mapArray(JSONArray: arrayJSON) {
+                    onClosure(weatherArray, nil)
+                }
+                
+            }
+        }
+    }
 }

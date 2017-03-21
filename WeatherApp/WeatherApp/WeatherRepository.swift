@@ -21,4 +21,15 @@ struct WeatherRepository {
             }
         })
     }
+    
+    static func getForecast (geolocation: Geolocation, onClosure: @escaping (_ forecast: Dictionary <String, Any>?, _ error: Error?) -> Void) {
+        Alamofire.request(WeatherRouter.getForecast(geolocation: geolocation, units: .celsius)).responseJSON { (response) in
+            if let responseError = response.error {
+                onClosure(nil, responseError)
+            }
+            if let JSON = response.result.value as? Dictionary <String, Any> {
+                onClosure(JSON, nil)
+            }
+        }
+    }
 }
