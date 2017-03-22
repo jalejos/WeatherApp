@@ -20,6 +20,9 @@ class MainViewController: UIViewController {
     
     let locationManager = LocationManager()
     var currentGeolocation = Geolocation()
+    var currentWeather = Weather()
+    var forecastArray = [Forecast]()
+    let forecastSegueIdentifier = "forecastSegue"
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,8 +32,15 @@ class MainViewController: UIViewController {
     }
     
     @IBAction func forecastTapped(_ sender: Any) {
-        WeatherService.getForecast(geolocation: currentGeolocation, onClosure: { (weatherArray, error) in
-            print(weatherArray)
+        WeatherService.getForecast(geolocation: currentGeolocation, onClosure: { (forecastArray, error) in
+            if error == nil {
+                if let forecastArray = forecastArray {
+                    self.forecastArray = forecastArray
+                    self.performSegue(withIdentifier: self.forecastSegueIdentifier, sender: self)
+                }
+            } else {
+                print(error)
+            }
         })
     }
     
@@ -47,11 +57,23 @@ class MainViewController: UIViewController {
                     let sunsetDate = dateFormatter.string(from: weather.sunset)
                     self.sunriseLabel.text = sunriseDate
                     self.sunsetLabel.text = sunsetDate
+                    self.currentWeather = weather
                 }
             } else{
                 print(error ?? "error on service request")
             }
         })
+    }
+}
+
+extension MainViewController {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == forecastSegueIdentifier {
+            var forecastViewController = segue.destination as! ForecastViewController
+            
+            forecastViewController.currentWeather = currentWeather
+            forecastViewController.forecastArray = forecastArray
+        }
     }
 }
 
