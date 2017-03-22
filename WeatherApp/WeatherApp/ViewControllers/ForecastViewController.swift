@@ -17,6 +17,7 @@ class ForecastViewController: UIViewController {
     @IBOutlet weak var maxTemperatureLabel: UILabel!
     @IBOutlet weak var minTemperatureLabel: UILabel!
     
+    let headerSize = CGFloat(20)
     let forecastCellIdentifier = "forecastCell"
     let dayOfTheWeek = [1:"MON", 2:"TUE", 3:"WED", 4:"THU", 5:"FRI", 6:"SAT", 7:"SUN"]
     var forecastArray = [Forecast]()
@@ -45,7 +46,7 @@ extension ForecastViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 20
+        return headerSize
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
