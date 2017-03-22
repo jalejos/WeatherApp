@@ -66,7 +66,7 @@ extension ForecastViewController: UITableViewDelegate, UITableViewDataSource {
             cell.dateLabel.text = dayOfTheWeek[weekDay]
         }
         
-        if let pictureURL = URL.init(string: "http://openweathermap.org/img/w/\(forecast.icon).png"){
+        if let pictureURL = URL.init(string: APIManager.imageURL + "/\(forecast.icon).png"){
             if let data = try? Data(contentsOf: pictureURL) {
                 cell.iconImageView.image = UIImage(data: data)
             }

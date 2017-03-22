@@ -13,6 +13,10 @@ struct APIManager {
         return "http://api.openweathermap.org/data/2.5"
     }
     
+    static var imageURL: String {
+        return "http://openweathermap.org/img/w"
+    }
+    
     static var appId: String {
         return "3f3a608541a999f9d309a7f2b3f36ac7"
     }
