@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="15G1217" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="15G1217" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="EbS-2J-T2D">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -11,6 +11,22 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
+        <!--Navigation Controller-->
+        <scene sceneID="Hrb-IS-Hqt">
+            <objects>
+                <navigationController id="EbS-2J-T2D" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="ghS-Si-ejG">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="q3p-zU-NAg"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="P8V-20-BAX" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-855" y="38"/>
+        </scene>
         <!--Main View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
@@ -92,7 +108,7 @@
                                 </constraints>
                             </view>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="200" verticalHuggingPriority="200" horizontalCompressionResistancePriority="200" verticalCompressionResistancePriority="200" image="cloud_white" translatesAutoresizingMaskIntoConstraints="NO" id="i51-n7-DyI">
-                                <rect key="frame" x="76" y="28" width="222.5" height="222.5"/>
+                                <rect key="frame" x="98" y="72" width="178.5" height="178.5"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="i51-n7-DyI" secondAttribute="height" multiplier="1:1" id="OHM-md-atp"/>
                                 </constraints>
@@ -123,6 +139,7 @@
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="1GM-Qt-hXh" secondAttribute="bottom" constant="20" id="tkw-Sa-XdN"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="7tZ-e6-B6V"/>
                     <connections>
                         <outlet property="locationLabel" destination="6VS-kU-os2" id="bs1-b4-61d"/>
                         <outlet property="sunriseLabel" destination="8m7-pi-ln4" id="N3f-9u-uCC"/>
@@ -130,7 +147,7 @@
                         <outlet property="temperatureLabel" destination="1mI-ak-X3S" id="2jF-kR-SC2"/>
                         <outlet property="weatherIcon" destination="i51-n7-DyI" id="WvR-iv-Z53"/>
                         <outlet property="weatherLabel" destination="xZs-Ln-HsX" id="LP4-EA-n7q"/>
-                        <segue destination="Bk4-D9-EjD" kind="presentation" identifier="forecastSegue" id="KrK-DY-XiW"/>
+                        <segue destination="Bk4-D9-EjD" kind="show" identifier="forecastSegue" id="KrK-DY-XiW"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -150,7 +167,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="J7s-9C-hlA">
-                                <rect key="frame" x="0.0" y="206" width="375" height="461"/>
+                                <rect key="frame" x="0.0" y="258" width="375" height="409"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="forecastCell" id="hnC-bg-oUz" customClass="ForecastTableViewCell" customModule="WeatherApp" customModuleProvider="target">
@@ -220,7 +237,7 @@
                                 </connections>
                             </tableView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3DV-nL-5TY">
-                                <rect key="frame" x="16" y="20" width="343" height="160"/>
+                                <rect key="frame" x="16" y="72" width="343" height="160"/>
                                 <subviews>
                                     <view alpha="0.45000000000000001" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YOz-m4-pX6">
                                         <rect key="frame" x="0.0" y="0.0" width="343" height="160"/>
@@ -281,7 +298,7 @@
                         <color key="backgroundColor" red="0.0" green="0.50196081400000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="J7s-9C-hlA" firstAttribute="leading" secondItem="SBQ-HC-Ob0" secondAttribute="leading" id="6OJ-0h-yoc"/>
-                            <constraint firstItem="3DV-nL-5TY" firstAttribute="top" secondItem="dW6-3F-PYe" secondAttribute="bottom" id="8BX-RR-fCC"/>
+                            <constraint firstItem="3DV-nL-5TY" firstAttribute="top" secondItem="dW6-3F-PYe" secondAttribute="bottom" constant="8" id="8BX-RR-fCC"/>
                             <constraint firstItem="3DV-nL-5TY" firstAttribute="trailing" secondItem="SBQ-HC-Ob0" secondAttribute="trailingMargin" id="Brv-EL-L3o"/>
                             <constraint firstItem="3DV-nL-5TY" firstAttribute="leading" secondItem="SBQ-HC-Ob0" secondAttribute="leadingMargin" id="WWN-IS-sGz"/>
                             <constraint firstItem="J7s-9C-hlA" firstAttribute="top" secondItem="3DV-nL-5TY" secondAttribute="bottom" constant="26" id="ckv-kt-BJc"/>
