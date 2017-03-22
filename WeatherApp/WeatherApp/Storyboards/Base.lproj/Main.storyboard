@@ -137,10 +137,10 @@
             </objects>
             <point key="canvasLocation" x="32.799999999999997" y="38.23088455772114"/>
         </scene>
-        <!--View Controller-->
+        <!--Forecast View Controller-->
         <scene sceneID="8Ba-j7-1x4">
             <objects>
-                <viewController id="Bk4-D9-EjD" sceneMemberID="viewController">
+                <viewController id="Bk4-D9-EjD" customClass="ForecastViewController" customModule="WeatherApp" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="dW6-3F-PYe"/>
                         <viewControllerLayoutGuide type="bottom" id="Fum-lX-o9t"/>
@@ -172,7 +172,7 @@
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="TxN-Fe-Hnt">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cloud_white" translatesAutoresizingMaskIntoConstraints="NO" id="TxN-Fe-Hnt">
                                         <rect key="frame" x="141" y="50" width="60" height="60"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="60" id="RWb-hH-ZKc"/>
@@ -224,7 +224,12 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="tableView" destination="J7s-9C-hlA" id="E5Z-v4-Rae"/>
+                        <outlet property="currentTemperatureLabel" destination="67s-On-Axx" id="Gdb-kO-sry"/>
+                        <outlet property="descriptionLabel" destination="uxe-3L-hpB" id="9G9-jq-bSw"/>
+                        <outlet property="imageView" destination="TxN-Fe-Hnt" id="cco-RD-8x2"/>
+                        <outlet property="maxTemperatureLabel" destination="Vv8-f7-yze" id="FhM-v5-xmN"/>
+                        <outlet property="minTemperatureLabel" destination="rU6-gM-CUe" id="hsX-0J-lw4"/>
+                        <outlet property="tableView" destination="J7s-9C-hlA" id="Ekq-Yn-3Fg"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="j9N-fE-Gqr" userLabel="First Responder" sceneMemberID="firstResponder"/>
