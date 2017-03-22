@@ -29,8 +29,8 @@ class Forecast: Mappable {
         return nil
     })
     
-    required init?(map: Map) {
-        
+    convenience required init?(map: Map) {
+        self.init()
     }
     
     func mapping(map: Map) {
