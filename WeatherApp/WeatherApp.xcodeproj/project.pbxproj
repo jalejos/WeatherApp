@@ -137,7 +137,6 @@
 		31E894A31E8052C00038E70A /* WeatherApp */ = {
 			isa = PBXGroup;
 			children = (
-				31E894F11E824EAE0038E70A /* Views */,
 				31E894E41E81A96C0038E70A /* Models */,
 				31E894E71E81A9B20038E70A /* Repositories */,
 				31E894E81E81A9C40038E70A /* Routing */,
@@ -145,6 +144,7 @@
 				31E894E31E81A93B0038E70A /* Storyboards */,
 				31E894E51E81A98E0038E70A /* Utilities */,
 				31E894E21E81A91B0038E70A /* ViewControllers */,
+				31E894F11E824EAE0038E70A /* Views */,
 				31E894A41E8052C00038E70A /* AppDelegate.swift */,
 				31E894AB1E8052C00038E70A /* Assets.xcassets */,
 				31E894B01E8052C00038E70A /* Info.plist */,
@@ -173,8 +173,8 @@
 		31E894E21E81A91B0038E70A /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				31E894D21E805C400038E70A /* MainViewController.swift */,
 				31E894EF1E823CB90038E70A /* ForecastViewController.swift */,
+				31E894D21E805C400038E70A /* MainViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -191,9 +191,9 @@
 		31E894E41E81A96C0038E70A /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				31E894ED1E81D9910038E70A /* Forecast.swift */,
 				31E894DA1E805EF00038E70A /* Geolocation.swift */,
 				31E894D81E805D550038E70A /* Weather.swift */,
-				31E894ED1E81D9910038E70A /* Forecast.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -237,6 +237,7 @@
 				31E894F21E824EDC0038E70A /* ForecastTableViewCell.swift */,
 			);
 			name = Views;
+			path = Views;
 			sourceTree = "<group>";
 		};
 		4F3900182C3E0008DEAB7105 /* Pods */ = {
