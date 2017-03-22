@@ -167,7 +167,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="J7s-9C-hlA">
-                                <rect key="frame" x="0.0" y="258" width="375" height="409"/>
+                                <rect key="frame" x="0.0" y="254" width="375" height="413"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="forecastCell" id="hnC-bg-oUz" customClass="ForecastTableViewCell" customModule="WeatherApp" customModuleProvider="target">
@@ -250,7 +250,7 @@
                                 </connections>
                             </tableView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3DV-nL-5TY">
-                                <rect key="frame" x="16" y="72" width="343" height="160"/>
+                                <rect key="frame" x="16" y="94" width="343" height="160"/>
                                 <subviews>
                                     <view alpha="0.45000000000000001" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YOz-m4-pX6">
                                         <rect key="frame" x="0.0" y="0.0" width="343" height="160"/>
@@ -311,10 +311,10 @@
                         <color key="backgroundColor" red="0.0" green="0.50196081400000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="J7s-9C-hlA" firstAttribute="leading" secondItem="SBQ-HC-Ob0" secondAttribute="leading" id="6OJ-0h-yoc"/>
-                            <constraint firstItem="3DV-nL-5TY" firstAttribute="top" secondItem="dW6-3F-PYe" secondAttribute="bottom" constant="8" id="8BX-RR-fCC"/>
+                            <constraint firstItem="3DV-nL-5TY" firstAttribute="top" secondItem="dW6-3F-PYe" secondAttribute="bottom" constant="30" id="8BX-RR-fCC"/>
                             <constraint firstItem="3DV-nL-5TY" firstAttribute="trailing" secondItem="SBQ-HC-Ob0" secondAttribute="trailingMargin" id="Brv-EL-L3o"/>
                             <constraint firstItem="3DV-nL-5TY" firstAttribute="leading" secondItem="SBQ-HC-Ob0" secondAttribute="leadingMargin" id="WWN-IS-sGz"/>
-                            <constraint firstItem="J7s-9C-hlA" firstAttribute="top" secondItem="3DV-nL-5TY" secondAttribute="bottom" constant="26" id="ckv-kt-BJc"/>
+                            <constraint firstItem="J7s-9C-hlA" firstAttribute="top" secondItem="3DV-nL-5TY" secondAttribute="bottom" id="ckv-kt-BJc"/>
                             <constraint firstItem="Fum-lX-o9t" firstAttribute="top" secondItem="J7s-9C-hlA" secondAttribute="bottom" id="ghe-ib-3s7"/>
                             <constraint firstAttribute="trailing" secondItem="J7s-9C-hlA" secondAttribute="trailing" id="hHp-n7-ha9"/>
                         </constraints>
