@@ -18,7 +18,7 @@ class ForecastViewController: UIViewController {
     @IBOutlet weak var minTemperatureLabel: UILabel!
     
     let forecastCellIdentifier = "forecastCell"
-    let dayOfTheWeek = ["0":"MON", "1":"TUE", "2":"WED", "3":"THU", "4":"FRI", "5":"SAT", "6":"SUN"]
+    let dayOfTheWeek = [1:"MON", 2:"TUE", 3:"WED", 4:"THU", 5:"FRI", 6:"SAT", 7:"SUN"]
     var forecastArray = [Forecast]()
     var currentWeather = Weather()
     
@@ -44,10 +44,11 @@ extension ForecastViewController: UITableViewDelegate, UITableViewDataSource {
         let forecast = forecastArray[indexPath.row]
         cell.forecast = forecast
         
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "F"
-        let dayNumber = dateFormatter.string(from: forecast.date)
-        cell.dateLabel.text = dayOfTheWeek[dayNumber]
+        let myCalendar = NSCalendar(calendarIdentifier: .gregorian)!
+        let myComponents = myCalendar.components(.weekday, from: forecast.date)
+        if let weekDay = myComponents.weekday{
+            cell.dateLabel.text = dayOfTheWeek[weekDay]
+        }
         
         if let pictureURL = URL.init(string: "http://openweathermap.org/img/w/\(forecast.icon).png"){
             if let data = try? Data(contentsOf: pictureURL) {
