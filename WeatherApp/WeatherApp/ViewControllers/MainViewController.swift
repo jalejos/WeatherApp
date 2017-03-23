@@ -37,23 +37,25 @@ class MainViewController: UIViewController {
     
     func checkWeather (geolocation: Geolocation) {
         WeatherService.getWeather(geolocation: geolocation, onComplete: { (weather, error) in
-            if (error == nil){
-                if let weather = weather {
-                    self.weatherLabel.text = weather.description
-                    self.locationLabel.text = weather.location
-                    self.temperatureLabel.text = "\(weather.temperature)C"
-                    let dateFormatter = DateFormatter()
-                    dateFormatter.dateFormat = "h:mm a"
-                    let sunriseDate = dateFormatter.string(from: weather.sunrise)
-                    let sunsetDate = dateFormatter.string(from: weather.sunset)
-                    self.sunriseLabel.text = sunriseDate
-                    self.sunsetLabel.text = sunsetDate
-                    self.currentWeather = weather
-                }
-            } else{
+            if let weather = weather {
+                self.configureView(with: weather)
+            } else {
                 print(error ?? "error on weather request")
             }
         })
+    }
+    
+    func configureView (with weather: Weather) {
+        weatherLabel.text = weather.description
+        locationLabel.text = weather.location
+        temperatureLabel.text = "\(weather.temperature)C"
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "h:mm a"
+        let sunriseDate = dateFormatter.string(from: weather.sunrise)
+        let sunsetDate = dateFormatter.string(from: weather.sunset)
+        sunriseLabel.text = sunriseDate
+        sunsetLabel.text = sunsetDate
+        currentWeather = weather
     }
 }
 
