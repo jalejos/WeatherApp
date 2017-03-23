@@ -32,16 +32,7 @@ class MainViewController: UIViewController {
     }
     
     @IBAction func forecastTapped(_ sender: Any) {
-        WeatherService.getForecast(geolocation: currentGeolocation, onComplete: { (forecastArray, error) in
-            if error == nil {
-                if let forecastArray = forecastArray {
-                    self.forecastArray = forecastArray
-                    self.performSegue(withIdentifier: self.forecastSegueIdentifier, sender: self)
-                }
-            } else {
-                print(error ?? "error on forecast request")
-            }
-        })
+        self.performSegue(withIdentifier: self.forecastSegueIdentifier, sender: self)
     }
     
     func checkWeather (geolocation: Geolocation) {
@@ -72,7 +63,7 @@ extension MainViewController {
             let forecastViewController = segue.destination as! ForecastViewController
             
             forecastViewController.currentWeather = currentWeather
-            forecastViewController.forecastArray = forecastArray
+            forecastViewController.configureView(with: currentGeolocation)
         }
     }
 }
