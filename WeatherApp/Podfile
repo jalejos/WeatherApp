@@ -8,6 +8,7 @@ target 'WeatherApp' do
   # Pods for WeatherApp
   
   pod 'Alamofire'
+  pod 'AlamofireImage'
   pod 'ObjectMapper'
 
   target 'WeatherAppTests' do
