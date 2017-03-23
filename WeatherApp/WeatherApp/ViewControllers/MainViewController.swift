@@ -18,7 +18,6 @@ class MainViewController: UIViewController {
     @IBOutlet weak var sunriseLabel: UILabel!
     @IBOutlet weak var sunsetLabel: UILabel!
     
-    var currentWeather = Weather()
     var forecastArray = [Forecast]()
     let forecastSegueIdentifier = "forecastSegue"
     
@@ -57,7 +56,6 @@ class MainViewController: UIViewController {
         let sunsetDate = dateFormatter.string(from: weather.sunset)
         sunriseLabel.text = sunriseDate
         sunsetLabel.text = sunsetDate
-        currentWeather = weather
     }
 }
 
@@ -66,7 +64,6 @@ extension MainViewController {
         if segue.identifier == forecastSegueIdentifier {
             let forecastViewController = segue.destination as! ForecastViewController
             
-            forecastViewController.currentWeather = currentWeather
             forecastViewController.configureView()
         }
     }

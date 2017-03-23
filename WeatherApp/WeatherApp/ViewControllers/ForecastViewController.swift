@@ -20,15 +20,18 @@ class ForecastViewController: UIViewController {
     let headerSize = CGFloat(20)
     let forecastCellIdentifier = "forecastCell"
     var forecastArray = [Forecast]()
-    var currentWeather = Weather()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        currentTemperatureLabel.text = "\(currentWeather.temperature)C"
-        descriptionLabel.text = "\(currentWeather.description)"
-        maxTemperatureLabel.text = "\(currentWeather.maxTemperature)C"
-        minTemperatureLabel.text = "\(currentWeather.minTemperature)C"
         
+        if let weather = WeatherService.sharedInstance.currentWeather {
+            currentTemperatureLabel.text = "\(weather.temperature)C"
+            descriptionLabel.text = "\(weather.description)"
+            maxTemperatureLabel.text = "\(weather.maxTemperature)C"
+            minTemperatureLabel.text = "\(weather.minTemperature)C"
+        } else {
+            print("error displaying current weather")
+        }
         // Do any additional setup after loading the view.
     }
     
