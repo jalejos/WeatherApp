@@ -25,8 +25,9 @@ class LocationManager: NSObject {
     }
     
     func getLocation(onComplete: @escaping (_ geolocation: Geolocation?, _ error: Error?) -> Void) {
+        self.onComplete = onComplete
         if currentLocation != nil {
-            onComplete(currentLocation!, nil)
+            self.onComplete(currentLocation!, nil)
         } else {
             requestLocation(onComplete: onComplete)
         }
@@ -44,7 +45,6 @@ class LocationManager: NSObject {
             break
         }
         if CLLocationManager.locationServicesEnabled() {
-            self.onComplete = onComplete
             manager.requestLocation()
         }
     }
