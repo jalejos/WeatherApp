@@ -69,7 +69,7 @@ class MainViewController: UIViewController {
 extension MainViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == forecastSegueIdentifier {
-            var forecastViewController = segue.destination as! ForecastViewController
+            let forecastViewController = segue.destination as! ForecastViewController
             
             forecastViewController.currentWeather = currentWeather
             forecastViewController.forecastArray = forecastArray
