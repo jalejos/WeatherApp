@@ -7,9 +7,11 @@
 //
 
 import UIKit
+import AlamofireImage
 
 class ForecastTableViewCell: UITableViewCell {
     
+    //MARK: UI elements
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var iconImageView: UIImageView!
     @IBOutlet weak var descriptionLabel: UILabel!

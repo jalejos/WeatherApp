@@ -10,6 +10,7 @@ import UIKit
 
 class ForecastViewController: UIViewController {
 
+    //MARK: UI elements
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var currentTemperatureLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
@@ -17,10 +18,12 @@ class ForecastViewController: UIViewController {
     @IBOutlet weak var maxTemperatureLabel: UILabel!
     @IBOutlet weak var minTemperatureLabel: UILabel!
     
+    //MARK: Local variables and constants
     let rowSize = CGFloat(50)
     let forecastCellIdentifier = "forecastCell"
     var forecastArray = [Forecast]()
     
+    //MARK: Initial configuration
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -35,6 +38,7 @@ class ForecastViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
+    //MARK: Async configuration
     func configureView() {
         LocationManager.sharedInstance.getLocation { (geolocation, error) in
             if geolocation != nil {
@@ -54,6 +58,7 @@ class ForecastViewController: UIViewController {
     
 }
 
+//MARK: UITableViewDataSource/Delegate functions
 extension ForecastViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

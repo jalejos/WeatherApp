@@ -9,6 +9,7 @@
 import Foundation
 
 struct APIManager {
+    //MARK: Environmental variables
     static var serverURL: String {
         return "http://api.openweathermap.org/data/2.5"
     }
@@ -21,6 +22,7 @@ struct APIManager {
         return "3f3a608541a999f9d309a7f2b3f36ac7"
     }
     
+    //MARK: Constructed URL constants
     static let baseURL: URL = URL(string: serverURL)!
     static let iconURL: URL = URL(string: imageURL)!
 }

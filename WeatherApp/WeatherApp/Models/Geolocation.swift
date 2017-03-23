@@ -9,9 +9,11 @@
 import Foundation
 
 struct Geolocation {
+    //MARK: Default values
     var latitude : String = "29.0730"
     var longitude : String = "-110.9559"
     
+    //MARK: Initialization methods
     init(){
     }
     

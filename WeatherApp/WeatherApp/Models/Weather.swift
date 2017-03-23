@@ -10,6 +10,7 @@ import UIKit
 import ObjectMapper
 
 class Weather: Mappable {
+    //MARK: Default values
     var temperature: Int = 0
     var location: String = "0"
     var description: String = ""
@@ -18,6 +19,7 @@ class Weather: Mappable {
     var maxTemperature: Int = 0
     var minTemperature: Int = 0
     
+    //MARK: Custom transformation methods
     let transformTemperature = TransformOf<Int, Double>(fromJSON: { (value: Double?) -> Int? in
         // transform value from Double to Int
         if let value = value {
@@ -32,6 +34,7 @@ class Weather: Mappable {
         return nil
     })
     
+    //MARK: ObjectMapper methods
     convenience required init?(map: Map) {
         self.init()
     }

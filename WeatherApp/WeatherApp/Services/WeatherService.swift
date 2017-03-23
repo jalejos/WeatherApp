@@ -11,10 +11,13 @@ import ObjectMapper
 
 class WeatherService {
     
+    //MARK: Singleton
     static let sharedInstance = WeatherService()
     
     var currentWeather: Weather? = nil
+    //MARK: Variables
     
+    //MARK: Get requests
     func getWeather (geolocation: Geolocation, onComplete: @escaping (_ weather: Weather?, _ error: Error?) -> Void) {
         WeatherRepository.getWeather(geolocation: geolocation) { (responseJSON, error) in
             if responseJSON != nil {

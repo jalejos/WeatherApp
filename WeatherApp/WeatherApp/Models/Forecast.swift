@@ -9,12 +9,16 @@
 import ObjectMapper
 
 class Forecast: Mappable {
+    
+    // MARK: Default values
     var maxTemperature: Int = 0
     var minTemperature: Int = 0
     var description: String = ""
     var date: Date = Date()
     var icon: String = ""
     
+    
+    // MARK: Custom transformation methods
     let transformTemperature = TransformOf<Int, Double>(fromJSON: { (value: Double?) -> Int? in
         // transform value from Double to Int
         if let value = value {
@@ -29,6 +33,7 @@ class Forecast: Mappable {
         return nil
     })
     
+    // MARK: ObjectMapper methods
     convenience required init?(map: Map) {
         self.init()
     }

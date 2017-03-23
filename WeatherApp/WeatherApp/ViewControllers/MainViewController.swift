@@ -11,6 +11,7 @@ import CoreLocation
 
 class MainViewController: UIViewController {
 
+    //MARK: UI elements
     @IBOutlet weak var weatherIcon: UIImageView!
     @IBOutlet weak var weatherLabel: UILabel!
     @IBOutlet weak var locationLabel: UILabel!
@@ -18,9 +19,11 @@ class MainViewController: UIViewController {
     @IBOutlet weak var sunriseLabel: UILabel!
     @IBOutlet weak var sunsetLabel: UILabel!
     
+    //MARK: Local variables and constants
     var forecastArray = [Forecast]()
     let forecastSegueIdentifier = "forecastSegue"
     
+    //MARK: Initial configuration
     override func viewDidLoad() {
         super.viewDidLoad()
         LocationManager.sharedInstance.getLocation { (geolocation, error) in
@@ -32,10 +35,12 @@ class MainViewController: UIViewController {
         }
     }
     
+    //MARK: UI actions
     @IBAction func forecastTapped(_ sender: Any) {
         self.performSegue(withIdentifier: self.forecastSegueIdentifier, sender: self)
     }
     
+    //MARK: Local functions
     func checkWeather (geolocation: Geolocation) {
         WeatherService.sharedInstance.getWeather(geolocation: geolocation, onComplete: { (weather, error) in
             if let weather = weather {
@@ -46,6 +51,7 @@ class MainViewController: UIViewController {
         })
     }
     
+    //MARK: UI configuration
     func configureView (with weather: Weather) {
         weatherLabel.text = weather.description
         locationLabel.text = weather.location
@@ -59,6 +65,7 @@ class MainViewController: UIViewController {
     }
 }
 
+//MARK: Segue implementation
 extension MainViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == forecastSegueIdentifier {

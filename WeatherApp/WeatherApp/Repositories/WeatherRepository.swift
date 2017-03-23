@@ -12,8 +12,11 @@ import AlamofireImage
 
 struct WeatherRepository {
     
+    
+    //MARK: Custom error
     static let noContentError = NSError.init(domain: "", code: 204, userInfo: nil)
     
+    //MARK: Get requests
     static func getWeather (geolocation: Geolocation, onComplete: @escaping (_ weather: Dictionary <String, Any>?, _ error: Error?) -> Void) {
         Alamofire.request(WeatherRouter.getWeather(geolocation: geolocation, unit: .celsius)).responseJSON(completionHandler: { (response) in
             if let JSON = response.result.value as? Dictionary <String, Any>{

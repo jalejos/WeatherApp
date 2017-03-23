@@ -9,11 +9,14 @@
 import Alamofire
 
 enum WeatherRouter: URLRequestConvertible {
+    
+    //MARK: Request cases
     case getWeather(geolocation: Geolocation, unit: TemperatureUnit)
     case getForecast(geolocation: Geolocation, unit: TemperatureUnit)
     case getIcon(identifier: String)
     
     static let forecastDays = 5
+    //MARK: Constants
     
     enum TemperatureUnit : String {
         case celsius = "metric"

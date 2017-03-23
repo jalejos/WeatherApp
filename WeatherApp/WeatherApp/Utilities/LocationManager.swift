@@ -11,12 +11,15 @@ import CoreLocation
 
 class LocationManager: NSObject {
     
+    //MARK: Singleton
     static let sharedInstance = LocationManager()
     
+    //MARK: Local variables and constants
     let manager = CLLocationManager()
     var currentLocation: Geolocation? = nil
     var onComplete: (Geolocation?, Error?) -> (Void) = {_ in}
     
+    //MARK: LocationManager configuration
     override init() {
         super.init()
         manager.delegate = self
@@ -24,6 +27,7 @@ class LocationManager: NSObject {
         manager.distanceFilter = 100
     }
     
+    //MARK: Request functions
     func getLocation(onComplete: @escaping (_ geolocation: Geolocation?, _ error: Error?) -> Void) {
         self.onComplete = onComplete
         if currentLocation != nil {
@@ -50,6 +54,7 @@ class LocationManager: NSObject {
     }
 }
 
+//MARK: CLLocationManagerDelegate functions
 extension LocationManager: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         let location = locations.first
