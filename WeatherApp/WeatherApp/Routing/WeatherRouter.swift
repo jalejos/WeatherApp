@@ -11,6 +11,7 @@ import Alamofire
 enum WeatherRouter: URLRequestConvertible {
     case getWeather(geolocation: Geolocation, unit: TemperatureUnit)
     case getForecast(geolocation: Geolocation, unit: TemperatureUnit)
+    case getIcon(identifier: String)
     
     static let forecastDays = 5
     
@@ -20,10 +21,12 @@ enum WeatherRouter: URLRequestConvertible {
         case kelvin = ""
     }
     
-    var method: HTTPMethod {
+    var url: URL {
         switch self {
         case .getWeather, .getForecast:
-            return .get
+            return APIManager.baseURL
+        case .getIcon:
+            return APIManager.iconURL
         }
     }
     
@@ -33,8 +36,17 @@ enum WeatherRouter: URLRequestConvertible {
             return "/weather"
         case .getForecast:
             return "/forecast/daily"
+        case let .getIcon(identifier):
+            return "/img/w/\(identifier).png"
         }
         
+    }
+    
+    var method: HTTPMethod {
+        switch self {
+        case .getWeather, .getForecast, .getIcon:
+            return .get
+        }
     }
     
     var parameters: Parameters {
@@ -57,18 +69,20 @@ enum WeatherRouter: URLRequestConvertible {
             parameters["cnt"] = WeatherRouter.forecastDays
             
             return parameters
+        default:
+            return Parameters()
         }
     }
     
     func asURLRequest() throws -> URLRequest {
-        let url = APIManager.baseURL
-        
         var urlRequest = URLRequest(url: url.appendingPathComponent(path))
         urlRequest.httpMethod = method.rawValue
         
         switch self {
         case .getWeather, .getForecast:
             urlRequest = try URLEncoding.default.encode(urlRequest, with: parameters)
+        case .getIcon:
+            urlRequest = try URLEncoding.default.encode(urlRequest, with: nil)
         }
         
         return urlRequest

@@ -8,6 +8,7 @@
 
 import Foundation
 import Alamofire
+import AlamofireImage
 
 struct WeatherRepository {
     
@@ -29,6 +30,25 @@ struct WeatherRepository {
             }
             if let JSON = response.result.value as? Dictionary <String, Any> {
                 onClosure(JSON, nil)
+            }
+        }
+    }
+    
+    static func getIcon (identifier: String, onComplete: @escaping (_ icon: UIImage?, _ error: Error?) -> Void) {
+        let imageCache = AutoPurgingImageCache()
+        if let cachedIcon = imageCache.image(withIdentifier: identifier) {
+            onComplete(cachedIcon, nil)
+        } else {
+            Alamofire.request(WeatherRouter.getIcon(identifier: identifier)).responseImage { (response) in
+                if let image = response.result.value {
+                    imageCache.add(image, withIdentifier: identifier)
+                    onComplete(image, nil)
+                } else if let error = response.error {
+                    onComplete(nil, error)
+                } else {
+                    let error = NSError.init(domain: "", code: 204, userInfo: nil)
+                    onComplete(nil, error)
+                }
             }
         }
     }

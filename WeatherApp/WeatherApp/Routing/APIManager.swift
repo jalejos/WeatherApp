@@ -14,7 +14,7 @@ struct APIManager {
     }
     
     static var imageURL: String {
-        return "http://openweathermap.org/img/w"
+        return "http://openweathermap.org"
     }
     
     static var appId: String {
@@ -22,4 +22,5 @@ struct APIManager {
     }
     
     static let baseURL: URL = URL(string: serverURL)!
+    static let iconURL: URL = URL(string: imageURL)!
 }
