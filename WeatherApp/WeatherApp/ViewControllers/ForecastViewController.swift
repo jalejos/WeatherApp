@@ -19,7 +19,6 @@ class ForecastViewController: UIViewController {
     
     let headerSize = CGFloat(20)
     let forecastCellIdentifier = "forecastCell"
-    let dayOfTheWeek = [1:"MON", 2:"TUE", 3:"WED", 4:"THU", 5:"FRI", 6:"SAT", 7:"SUN"]
     var forecastArray = [Forecast]()
     var currentWeather = Weather()
     
