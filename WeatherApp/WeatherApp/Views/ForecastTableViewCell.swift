@@ -21,7 +21,7 @@ class ForecastTableViewCell: UITableViewCell {
         dateFormatter.dateFormat = "EEE"
         dateLabel.text = dateFormatter.string(from: forecast.date).uppercased()
         
-        WeatherService.getIcon(identifier: forecast.icon) { (icon, error) in
+        WeatherService.sharedInstance.getIcon(identifier: forecast.icon) { (icon, error) in
             self.iconImageView.image = icon
         }
         

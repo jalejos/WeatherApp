@@ -35,7 +35,7 @@ class ForecastViewController: UIViewController {
     func configureView() {
         LocationManager.sharedInstance.getLocation { (geolocation, error) in
             if geolocation != nil {
-                WeatherService.getForecast(geolocation: geolocation!, onComplete: { (forecastArray, error) in
+                WeatherService.sharedInstance.getForecast(geolocation: geolocation!, onComplete: { (forecastArray, error) in
                     if let forecastArray = forecastArray {
                         self.forecastArray = forecastArray
                         self.tableView.reloadData()

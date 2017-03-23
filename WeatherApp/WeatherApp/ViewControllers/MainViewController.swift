@@ -38,7 +38,7 @@ class MainViewController: UIViewController {
     }
     
     func checkWeather (geolocation: Geolocation) {
-        WeatherService.getWeather(geolocation: geolocation, onComplete: { (weather, error) in
+        WeatherService.sharedInstance.getWeather(geolocation: geolocation, onComplete: { (weather, error) in
             if let weather = weather {
                 self.configureView(with: weather)
             } else {
