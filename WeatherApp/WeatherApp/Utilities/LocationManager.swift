@@ -9,15 +9,23 @@
 import UIKit
 import CoreLocation
 
-class LocationManager {
+class LocationManager: NSObject {
     
     let manager = CLLocationManager()
+    var onComplete: (Geolocation?, Error?) -> (Void) = {_ in}
     
-    func getLocation(sender: MainViewController) -> Geolocation? {
+    override init() {
+        super.init()
+        manager.delegate = self
+        manager.desiredAccuracy = kCLLocationAccuracyKilometer
+        manager.distanceFilter = 100
+    }
+    
+    func getLocation(onComplete: @escaping (_ geolocation: Geolocation?, _ error: Error?) -> Void) {
         let status = CLLocationManager.authorizationStatus()
         switch status {
         case .restricted, .denied:
-            return Geolocation()
+            return onComplete(Geolocation(), nil)
         case .notDetermined:
             manager.requestWhenInUseAuthorization()
             break
@@ -25,11 +33,24 @@ class LocationManager {
             break
         }
         if CLLocationManager.locationServicesEnabled() {
-            manager.delegate = sender
-            manager.desiredAccuracy = kCLLocationAccuracyKilometer
-            manager.distanceFilter = 100
+            self.onComplete = onComplete
             manager.requestLocation()
         }
-        return nil
+    }
+}
+
+extension LocationManager: CLLocationManagerDelegate {
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        let location = locations.first
+        if let coordinates = location?.coordinate {
+            let geolocation = Geolocation(lat: String(format:"%f",coordinates.latitude), lng: String(format:"%f",coordinates.longitude))
+            onComplete(geolocation, nil)
+        } else {
+            onComplete(nil, nil)
+        }
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        onComplete(nil, error)
     }
 }

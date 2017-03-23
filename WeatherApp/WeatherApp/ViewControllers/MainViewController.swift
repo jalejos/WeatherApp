@@ -26,8 +26,12 @@ class MainViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        if let geolocation = locationManager.getLocation(sender: self) {
-            checkWeather(geolocation: geolocation)
+        locationManager.getLocation { (geolocation, error) in
+            if geolocation != nil {
+                self.checkWeather(geolocation: geolocation!)
+            } else {
+                print(error ?? "error getting location")
+            }
         }
     }
     
@@ -36,6 +40,7 @@ class MainViewController: UIViewController {
     }
     
     func checkWeather (geolocation: Geolocation) {
+        currentGeolocation = geolocation
         WeatherService.getWeather(geolocation: geolocation, onComplete: { (weather, error) in
             if let weather = weather {
                 self.configureView(with: weather)
@@ -68,22 +73,4 @@ extension MainViewController {
             forecastViewController.configureView(with: currentGeolocation)
         }
     }
-}
-
-extension MainViewController: CLLocationManagerDelegate {
-    
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        let location = locations.first
-        if let coordinates = location?.coordinate {
-            let geolocation = Geolocation(lat: String(format:"%f",coordinates.latitude), lng: String(format:"%f",coordinates.longitude))
-            currentGeolocation = geolocation
-        }
-        checkWeather(geolocation: currentGeolocation)
-    }
-    
-    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
-        print(error)
-        checkWeather(geolocation: currentGeolocation)
-    }
-    
 }
