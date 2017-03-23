@@ -16,6 +16,13 @@ class ForecastTableViewCell: UITableViewCell {
     @IBOutlet weak var maxTemperature: UILabel!
     @IBOutlet weak var minTemperature: UILabel!
     
-    var forecast = Forecast()
-    
+    func configureCell (forecast: Forecast) {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "EEE"
+        dateLabel.text = dateFormatter.string(from: forecast.date).uppercased()
+        
+        descriptionLabel.text = forecast.description
+        maxTemperature.text = "\(forecast.maxTemperature)C"
+        minTemperature.text = "\(forecast.minTemperature)C"
+    }
 }

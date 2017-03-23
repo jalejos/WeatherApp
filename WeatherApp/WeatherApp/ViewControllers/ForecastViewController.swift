@@ -58,22 +58,7 @@ extension ForecastViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: forecastCellIdentifier, for: indexPath) as! ForecastTableViewCell
         let forecast = forecastArray[indexPath.section]
-        cell.forecast = forecast
-        
-        let myCalendar = NSCalendar(calendarIdentifier: .gregorian)!
-        let myComponents = myCalendar.components(.weekday, from: forecast.date)
-        if let weekDay = myComponents.weekday{
-            cell.dateLabel.text = dayOfTheWeek[weekDay]
-        }
-        
-        if let pictureURL = URL.init(string: APIManager.imageURL + "/\(forecast.icon).png"){
-            if let data = try? Data(contentsOf: pictureURL) {
-                cell.iconImageView.image = UIImage(data: data)
-            }
-        }
-        cell.descriptionLabel.text = forecast.description
-        cell.maxTemperature.text = "\(forecast.maxTemperature)C"
-        cell.minTemperature.text = "\(forecast.minTemperature)C"
+        cell.configureCell(forecast: forecast)
         return cell
     }
 }
