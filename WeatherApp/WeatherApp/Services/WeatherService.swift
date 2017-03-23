@@ -10,33 +10,31 @@ import Foundation
 import ObjectMapper
 
 struct WeatherService {
-    static func getWeather (geolocation: Geolocation, onClosure: @escaping (_ weather: Weather?, _ error: Error?) -> Void) {
-        WeatherRepository.getWeather(geolocation: geolocation) { (weatherJSON, error) in
-            if (error == nil){
-                guard let weatherJSON = weatherJSON else {onClosure(nil, nil); return}
-
-                if let weather = Mapper<Weather>().map(JSONObject: weatherJSON) {
-                    onClosure (weather, nil)
-                } else {
-                    onClosure (nil, nil)
-                }
-                onClosure(nil, nil)
+    static func getWeather (geolocation: Geolocation, onComplete: @escaping (_ weather: Weather?, _ error: Error?) -> Void) {
+        WeatherRepository.getWeather(geolocation: geolocation) { (responseJSON, error) in
+            if responseJSON != nil {
+                let weather = Mapper<Weather>().map(JSONObject: responseJSON)
+                onComplete(weather, nil)
             } else {
-                onClosure (nil, error)
+                onComplete(nil, error)
             }
         }
     }
     
-    static func getForecast (geolocation: Geolocation, onClosure: @escaping (_ weather: [Forecast]?, _ error: Error?) -> Void) {
+    static func getForecast (geolocation: Geolocation, onComplete: @escaping (_ weather: [Forecast]?, _ error: Error?) -> Void) {
         WeatherRepository.getForecast(geolocation: geolocation) { (responseJSON, error) in
-            if error == nil {
-                guard let responseJSON = responseJSON else { onClosure(nil, nil); return }
-                guard let arrayJSON = responseJSON["list"] as? Array<Dictionary<String, Any>> else { onClosure(nil, nil); return }
-                
-                if let forecastArray = Mapper<Forecast>().mapArray(JSONArray: arrayJSON) {
-                    onClosure(forecastArray, nil)
+            if responseJSON != nil {
+                guard let arrayJSON = responseJSON!["list"] as? Array<Dictionary<String, Any>> else {
+                    onComplete(nil, nil);
+                    return
                 }
-                
+                let forecastArray = Mapper<Forecast>().mapArray(JSONArray: arrayJSON)
+                onComplete(forecastArray, error)
+            } else {
+                onComplete(nil, error)
+            }
+        }
+    }
     
     static func getIcon (identifier: String, onComplete: @escaping (_ icon: UIImage?, _ error: Error?) -> Void) {
         WeatherRepository.getIcon(identifier: identifier) { (icon, error) in

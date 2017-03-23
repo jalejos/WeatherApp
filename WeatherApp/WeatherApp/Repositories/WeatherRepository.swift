@@ -12,25 +12,30 @@ import AlamofireImage
 
 struct WeatherRepository {
     
-    static func getWeather (geolocation: Geolocation, onClosure: @escaping (_ weather: Dictionary <String, Any>?, _ error: Error?) -> Void) {
+    static let noContentError = NSError.init(domain: "", code: 204, userInfo: nil)
+    
+    static func getWeather (geolocation: Geolocation, onComplete: @escaping (_ weather: Dictionary <String, Any>?, _ error: Error?) -> Void) {
         Alamofire.request(WeatherRouter.getWeather(geolocation: geolocation, unit: .celsius)).responseJSON(completionHandler: { (response) in
-            if let responseError = response.error {
-                onClosure(nil, responseError)
-            }
             if let JSON = response.result.value as? Dictionary <String, Any>{
-                onClosure(JSON, nil)
+                onComplete(JSON, nil)
+            } else if let responseError = response.error {
+                onComplete(nil, responseError)
+            } else {
+                onComplete(nil, noContentError)
             }
         })
     }
     
-    static func getForecast (geolocation: Geolocation, onClosure: @escaping (_ forecast: Dictionary <String, Any>?, _ error: Error?) -> Void) {
+    static func getForecast (geolocation: Geolocation, onComplete: @escaping (_ forecast: Dictionary <String, Any>?, _ error: Error?) -> Void) {
         Alamofire.request(WeatherRouter.getForecast(geolocation: geolocation, unit: .celsius)).responseJSON { (response) in
-            if let responseError = response.error {
-                onClosure(nil, responseError)
-            }
             if let JSON = response.result.value as? Dictionary <String, Any> {
-                onClosure(JSON, nil)
+                onComplete(JSON, nil)
+            } else if let responseError = response.error {
+                onComplete(nil, responseError)
+            } else {
+                onComplete(nil, noContentError)
             }
+            
         }
     }
     
@@ -46,8 +51,7 @@ struct WeatherRepository {
                 } else if let error = response.error {
                     onComplete(nil, error)
                 } else {
-                    let error = NSError.init(domain: "", code: 204, userInfo: nil)
-                    onComplete(nil, error)
+                    onComplete(nil, noContentError)
                 }
             }
         }
