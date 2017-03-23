@@ -21,6 +21,10 @@ class ForecastTableViewCell: UITableViewCell {
         dateFormatter.dateFormat = "EEE"
         dateLabel.text = dateFormatter.string(from: forecast.date).uppercased()
         
+        WeatherService.getIcon(identifier: forecast.icon) { (icon, error) in
+            self.iconImageView.image = icon
+        }
+        
         descriptionLabel.text = forecast.description
         maxTemperature.text = "\(forecast.maxTemperature)C"
         minTemperature.text = "\(forecast.minTemperature)C"

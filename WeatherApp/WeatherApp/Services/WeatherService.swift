@@ -37,6 +37,13 @@ struct WeatherService {
                     onClosure(forecastArray, nil)
                 }
                 
+    
+    static func getIcon (identifier: String, onComplete: @escaping (_ icon: UIImage?, _ error: Error?) -> Void) {
+        WeatherRepository.getIcon(identifier: identifier) { (icon, error) in
+            if let icon = icon {
+                onComplete(icon, nil)
+            } else {
+                onComplete(nil, error)
             }
         }
     }
