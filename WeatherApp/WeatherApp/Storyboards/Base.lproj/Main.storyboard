@@ -218,7 +218,7 @@
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                             <constraints>
-                                                <constraint firstItem="YtE-cJ-eIc" firstAttribute="top" secondItem="r4O-Wb-xKq" secondAttribute="top" id="AGc-of-qic"/>
+                                                <constraint firstItem="YtE-cJ-eIc" firstAttribute="top" secondItem="r4O-Wb-xKq" secondAttribute="top" constant="4" id="AGc-of-qic"/>
                                                 <constraint firstItem="yJk-Jt-zBF" firstAttribute="top" secondItem="r4O-Wb-xKq" secondAttribute="top" constant="2" id="F5V-6m-PXY"/>
                                                 <constraint firstItem="cu7-JI-pwA" firstAttribute="leading" secondItem="Yzk-hs-Zda" secondAttribute="trailing" constant="8" id="Krz-6h-i3H"/>
                                                 <constraint firstAttribute="trailing" secondItem="YtE-cJ-eIc" secondAttribute="trailing" id="R61-gR-HLv"/>
@@ -230,7 +230,7 @@
                                                 <constraint firstAttribute="trailing" secondItem="Zx0-t7-E5g" secondAttribute="trailing" constant="8" id="fR3-it-R7s"/>
                                                 <constraint firstItem="Yzk-hs-Zda" firstAttribute="centerY" secondItem="r4O-Wb-xKq" secondAttribute="centerY" id="isq-Or-gS7"/>
                                                 <constraint firstAttribute="bottom" secondItem="Zx0-t7-E5g" secondAttribute="bottom" constant="2" id="ozd-FS-Icg"/>
-                                                <constraint firstAttribute="bottom" secondItem="YtE-cJ-eIc" secondAttribute="bottom" id="rCj-sQ-4OB"/>
+                                                <constraint firstAttribute="bottom" secondItem="YtE-cJ-eIc" secondAttribute="bottom" constant="4" id="rCj-sQ-4OB"/>
                                                 <constraint firstItem="Yzk-hs-Zda" firstAttribute="leading" secondItem="r4O-Wb-xKq" secondAttribute="leadingMargin" id="xWW-Nu-kZB"/>
                                             </constraints>
                                         </tableViewCellContentView>
