@@ -18,14 +18,12 @@ class ForecastTableViewCell: UITableViewCell {
     @IBOutlet weak var maxTemperature: UILabel!
     @IBOutlet weak var minTemperature: UILabel!
     
+    //MARK: UI configuration
     func configureCell (forecast: Forecast) {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "EEE"
         dateLabel.text = dateFormatter.string(from: forecast.date).uppercased()
-        
-        WeatherService.sharedInstance.getIcon(identifier: forecast.icon) { (icon, error) in
-            self.iconImageView.image = icon
-        }
+        iconImageView.af_setImage(withURL: URL(string: forecast.iconStringURL)!)
         
         descriptionLabel.text = forecast.description
         maxTemperature.text = "\(forecast.maxTemperature)C"

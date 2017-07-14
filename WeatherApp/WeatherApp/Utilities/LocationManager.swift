@@ -16,8 +16,8 @@ class LocationManager: NSObject {
     
     //MARK: Local variables and constants
     let manager = CLLocationManager()
-    var currentLocation: Geolocation? = nil
-    var onComplete: (Geolocation?, Error?) -> (Void) = {_ in}
+    var currentLocation: Geolocation?
+    var onComplete: ((Geolocation?, Error?) -> (Void))?
     
     //MARK: LocationManager configuration
     override init() {
@@ -31,7 +31,7 @@ class LocationManager: NSObject {
     func getLocation(onComplete: @escaping (_ geolocation: Geolocation?, _ error: Error?) -> Void) {
         self.onComplete = onComplete
         if currentLocation != nil {
-            self.onComplete(currentLocation!, nil)
+            self.onComplete?(currentLocation!, nil)
         } else {
             requestLocation(onComplete: onComplete)
         }
@@ -61,13 +61,13 @@ extension LocationManager: CLLocationManagerDelegate {
         if let coordinates = location?.coordinate {
             let geolocation = Geolocation(lat: String(format:"%f",coordinates.latitude), lng: String(format:"%f",coordinates.longitude))
             currentLocation = geolocation
-            onComplete(currentLocation, nil)
+            onComplete?(currentLocation, nil)
         } else {
-            onComplete(nil, nil)
+            onComplete?(nil, nil)
         }
     }
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
-        onComplete(nil, error)
+        onComplete?(nil, error)
     }
 }

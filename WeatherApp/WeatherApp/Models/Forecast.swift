@@ -16,7 +16,12 @@ class Forecast: Mappable {
     var description: String = ""
     var date: Date = Date()
     var icon: String = ""
+    var iconStringURL: String {
+        
+            return "http://openweathermap.org/img/w/\(icon).png" 
+        
     
+    }
     
     // MARK: Custom transformation methods
     let transformTemperature = TransformOf<Int, Double>(fromJSON: { (value: Double?) -> Int? in

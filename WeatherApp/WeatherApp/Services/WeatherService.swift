@@ -14,8 +14,8 @@ class WeatherService {
     //MARK: Singleton
     static let sharedInstance = WeatherService()
     
-    var currentWeather: Weather? = nil
     //MARK: Variables
+    var currentWeather: Weather?
     
     //MARK: Get requests
     func getWeather (geolocation: Geolocation, onComplete: @escaping (_ weather: Weather?, _ error: Error?) -> Void) {
@@ -37,7 +37,9 @@ class WeatherService {
                     onComplete(nil, nil);
                     return
                 }
-                let forecastArray = Mapper<Forecast>().mapArray(JSONArray: arrayJSON)
+                var forecastArray = Mapper<Forecast>().mapArray(JSONArray: arrayJSON)
+                //API returns 6 elements including today, so we got to remove the first element of the array
+                forecastArray?.remove(at: 0)
                 onComplete(forecastArray, error)
             } else {
                 onComplete(nil, error)
@@ -45,13 +47,4 @@ class WeatherService {
         }
     }
     
-    func getIcon (identifier: String, onComplete: @escaping (_ icon: UIImage?, _ error: Error?) -> Void) {
-        WeatherRepository.getIcon(identifier: identifier) { (icon, error) in
-            if let icon = icon {
-                onComplete(icon, nil)
-            } else {
-                onComplete(nil, error)
-            }
-        }
-    }
 }

@@ -13,10 +13,9 @@ enum WeatherRouter: URLRequestConvertible {
     //MARK: Request cases
     case getWeather(geolocation: Geolocation, unit: TemperatureUnit)
     case getForecast(geolocation: Geolocation, unit: TemperatureUnit)
-    case getIcon(identifier: String)
     
-    static let forecastDays = 5
     //MARK: Constants
+    static let forecastDays = 6
     
     enum TemperatureUnit : String {
         case celsius = "metric"
@@ -24,12 +23,11 @@ enum WeatherRouter: URLRequestConvertible {
         case kelvin = ""
     }
     
+    //MARK: Variables
     var url: URL {
         switch self {
         case .getWeather, .getForecast:
             return APIManager.baseURL
-        case .getIcon:
-            return APIManager.iconURL
         }
     }
     
@@ -39,15 +37,13 @@ enum WeatherRouter: URLRequestConvertible {
             return "/weather"
         case .getForecast:
             return "/forecast/daily"
-        case let .getIcon(identifier):
-            return "/img/w/\(identifier).png"
         }
         
     }
     
     var method: HTTPMethod {
         switch self {
-        case .getWeather, .getForecast, .getIcon:
+        case .getWeather, .getForecast:
             return .get
         }
     }
@@ -77,6 +73,7 @@ enum WeatherRouter: URLRequestConvertible {
         }
     }
     
+    //MARK: Request functions
     func asURLRequest() throws -> URLRequest {
         var urlRequest = URLRequest(url: url.appendingPathComponent(path))
         urlRequest.httpMethod = method.rawValue
@@ -84,8 +81,6 @@ enum WeatherRouter: URLRequestConvertible {
         switch self {
         case .getWeather, .getForecast:
             urlRequest = try URLEncoding.default.encode(urlRequest, with: parameters)
-        case .getIcon:
-            urlRequest = try URLEncoding.default.encode(urlRequest, with: nil)
         }
         
         return urlRequest
